@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Рецепт
+{% endblock %}
+
+
+{% block body %}
+<section class="">
+    <div class="container">
+      <h2>&#8194;{{ recipe.name_recipe }}</h2>
+      <img style="border-radius: 30px" src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp" alt="image 1"
+                         class="sop">
+      <p style="font-size: 22px" >	&#8194;{{ recipe.description }}</p>
+      <p style="font-size: 20px">	&#8194;{{ recipe.recipe }}</p>
+    </div>
+</section>
+
+{% endblock %}

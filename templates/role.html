@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+  <h1>Основная страница</h1>
+  <form action="/role" method="post">
+    <input type="text" name="name_role" id="name_role" class="form-control"><br>
+    <input type="submit" class="btn btn-succes" value="Добавить">
+  </form>
+</div>
+{% endblock %}
