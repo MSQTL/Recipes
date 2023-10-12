@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ profile_nickname }}
+{% endblock %}
+
+
+{% block body %}
+<section class="h-100 gradient-custom-2">
+    <div class="container pb-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                    <div class="rounded-top text-white d-flex flex-row"
+                         style="background-color: rgba(150, 175, 255, 255); height:200px;">
+                        <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px; height: 152px;">
+                            <img src="{{ user_photo }}"
+                                 alt="Generic placeholder image" class="img-thumbnail mt-4 mb-2"
+                                 style="width: 150px; ; height: 150px; z-index: 1">
+                            {% if profile_nickname == nickname %}
+                            <a href="/new_info" style="z-index: 1;">
+                                <button type="button" class="btn btn-warning mt-1_5">
+                                    Редактировать
+                                </button>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="ms-3" style="margin-top: 130px;">
+                            <h5>{{ profile_nickname }}</h5>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="p-4 text-black" style="background-color: #9caefd24;">
+                        <div class="d-flex justify-content-end fd text-right">
+                            <div class="pb-1">
+                                <span class="small text-muted mb-0">Рецепты: </span>
+                                <span class="mb-1 h5">{{ count_of_recipes }}</span>
+                            </div>
+                            {% if profile_nickname == nickname %}
+                            <div class="add-rep-width">
+                                <a href="/new_recipe">
+                                    <button type="button" class="btn btn-warning"
+                                            style="z-index: 1;">
+                                        Добавить
+                                    </button>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-body p-4 text-black">
+                        {% if user_info %}
+                        <div class="mb-5">
+                            <p class="lead fw-normal mb-1">О себе</p>
+                            <div class="p-4" style="background-color: #9caefd24;">
+                                <p class="font-italic mb-1">{{ user_info }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="lead fw-normal mb-0">Мои рецепты</p>
+                            <p class="mb-0"><a href="/profile+{{ profile_nickname }}+all" class="text-muted">Все
+                                рецепты</a></p>
+                        </div>
+                        <table style="width:100%">
+                            {% for recipe in profile_recipes %}
+                            <tr>
+                                <th class="ps-3" colspan="2">
+                                    &#8194;<a style="font-size: 20px " href="/recipe+{{ recipe.id_recipe }}">{{
+                                    recipe.name_recipe }}</a>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td style="width: 300px">
+                                    {% if recipe.recipe_photo == None %}
+                                    <img style="border-radius: 30px"
+                                         src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                                         alt="image 1"
+                                         class="sop">
+                                    {% else %}
+                                    <img style="border-radius: 30px"
+                                         src="/static/images/recipes/{{ recipe.recipe_photo }}"
+                                         alt="{{ recipe.recipe_photo }}"
+                                         class="sop">
+
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div style="font-size: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
+                                        -webkit-line-clamp: 4; -webkit-box-orient: vertical;">
+                                        &#8194;{{ recipe.description }}
+                                    </div>
+                                    <p>
+                                        &#8194;<a style="font-size: 17px" href="/recipe+{{ recipe.id_recipe }}">Подробнее</a>
+                                    </p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

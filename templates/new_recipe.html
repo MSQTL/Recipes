@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Новый рецепт
+{% endblock %}
+{% block body %}
+<section class="">
+    <div class="container">
+    <a href="/profile+{{ nickname }}" style="background: white; padding: 7px; border-radius: 10px; opacity: .95">
+            ⯇Назад
+        </a>
+        <h1 class="center-text">Новый рецепт</h1>
+        <br>
+        <form action="/new_recipe" method="post" enctype=multipart/form-data>
+            <table style="width:100%">
+
+                <tr>
+                    <td>
+                        <div style="text-align: center; border: 3px dashed grey; width: 300px; padding: 10px; background-color: white;">
+                            <div id="dropzone1" >
+                                Переместите изображения сюда<br>
+                                или выберите файлы<br>
+                                (поддерживаются <b>JPG</b>, <b>PNG</b>, <b>GIF</b>, <b>WEBP</b>)<br><br>
+                                <input type="file" name="file" class="custom-file-input">
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 410px;">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="name_recipe" placeholder="Name" >
+                            <label for="floatingInput">Название</label>
+                            <br>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="description"
+                                       placeholder="Description">
+                                <label for="floatingDescription">Описание</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="display: flex; justify-content: flex-end;">
+                        <div  style="">
+                            <select name="categ" id="categ" title="Rfntujhbz" style="width: 300px;
+                            height: calc(3.5rem + 2px); border: 1px solid #ced4da; border-radius: 0.375rem;
+                            margin-top: 20px; margin-left: 10px;">
+                                <option value="категория">Категория</option>
+                                <option value="Супы">Супы</option>
+                                <option value="Вторые блюда">Вторые блюда</option>
+                                <option value="Выпечка">Выпечка</option>
+                                <option value="Салаты">Салаты</option>
+                                <option value="Десерты">Десерты</option>
+                                <option value="Горячие закуски">Горячие закуски</option>
+                                <option value="Напитки">Напитки</option>
+                    </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div class="form-floating">
+                <textarea style="height: 150px;  white-space: pre-wrap;" class="form-control" name="recipe" placeholder="new_recipe"></textarea>
+                <label for="floatingRecipe">Рецепт</label>
+            </div>
+            <br>
+            <div style="display: flex; align-items: center; justify-content: flex-end;">
+                <button class="btn btn-primary w-20 py-2" style="align-items: right;" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+<form action="/new_recipe" method="post" class="center-text w-100">
+    <h1 class="h3 mb-3 fw-normal">Новый рецент</h1>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="name_recipe" placeholder="Name">
+        <label for="floatingInput">Название</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <input type="password" class="form-control" name="description" placeholder="Description">
+        <label for="floatingDescription">Описание</label>
+    </div>
+    <br>
+    <div class="form-floating">
+                    <textarea class="form-control" name="recipe" placeholder="new_recipe">
+                    </textarea>
+        <label for="floatingRecipe">Рецепт</label>
+    </div>
+    <br>
+    <button class="btn btn-primary w-100 py-2" type="submit">Сохранить</button>
+</form>

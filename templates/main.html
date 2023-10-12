@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+{% block body %}
+<section class="">
+    <div class="container">
+        <h1 class="center-text main-h1">Рецепты</h1>
+
+        <form method="post" action="/" style="display: flex; margin-bottom: 12px;">
+            <div style="display: grid; grid-template-columns: 8fr 1fr 1fr;">
+                <div class="container-search">
+                    <input type="text" placeholder="Search" class="searchbar" name="search_text"
+                           style="width: 100%">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/41gYkruZM2L.png" alt="search icon"
+                         class="button">
+                </div>
+
+                <div class="container-search">
+                    <select name="categ" id="categ" title="Rfntujhbz"
+                            style="width:200px; border-radius: 5px; padding: 2.5px;">
+                        <option value="категория">Категория</option>
+                        {% for category in categories %}
+                        <option value="{{ category.category }}">{{ category.category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="container-search">
+                    <button type="submit" style="border: 1px solid #0d6efd; background-color: #0d6efd; color: white;
+                    border-radius: 5px; font-size: 17px;">
+                        Найти
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        {% for recipe in recipes %}
+        <table style="width:100%; box-shadow: -2px -2px 5px grey, 2px 2px 5px grey; margin-bottom: 25px; border-radius: 20px 40px; background: white;">
+            <tr>
+                <th class="ps-4" style="padding-top: 10px; font-style: italic;">
+                    {{ recipe.category }}
+                </th>
+            </tr>
+
+            <tr>
+                <th class="ps-3" style="" colspan="2">
+                    &#8194;<a style="font-size: 20px; " href="/recipe+{{ recipe.id_recipe }}">{{ recipe.name_recipe
+                    }}</a>
+                </th>
+            </tr>
+
+            <tr>
+                <td style="width: 300px">
+                    {% if recipe.recipe_photo == None %}
+                    <img style="border-radius: 30px"
+                         src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                         alt="image 1"
+                         class="sop">
+                    {% else %}
+                    <img style="border-radius: 30px"
+                         src="/static/images/recipes/{{ recipe.recipe_photo }}"
+                         alt="{{ recipe.recipe_photo }}"
+                         class="sop">
+
+                    {% endif %}
+                </td>
+
+                <td>
+                    <div style="font-size: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
+                        -webkit-line-clamp: 4; -webkit-box-orient: vertical; margin-right: 1rem;">
+                        &#8194;{{ recipe.description }}
+                    </div>
+                    <p>
+                        &#8194;<a style="font-size: 17px" href="/recipe+{{ recipe.id_recipe }}">Подробнее</a>
+                    </p>
+                    <p align="right">
+                        <a style="font-size: 17px; margin-right: 1rem;" href="/profile+{{ recipe.nickname }}">{{
+                            recipe.nickname }}</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

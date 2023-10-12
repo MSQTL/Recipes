@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Новые данные
+{% endblock %}
+
+
+{% block body %}
+<section class="">
+    <div class="container">
+        <a href="/profile+{{ nickname }}" style="background: white; padding: 7px; border-radius: 10px; opacity: .95">
+            ⯇Назад
+        </a>
+        <h1 class="center-text">Редактирование профиля</h1>
+        <br>
+        <form action="/new_info" method="post" enctype=multipart/form-data>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <div style="text-align: center; border: 3px dashed grey; width: 300px; padding: 10px; margin-bottom: 10px; background-color: white;">
+                            <div id="dropzone1">
+                                Переместите изображения сюда<br>
+                                или выберите файлы<br>
+                                (поддерживаются <b>JPG</b>, <b>PNG</b>, <b>GIF</b>, <b>PDF</b>)<br><br>
+                                <input type="file" name="file" class="custom-file-input">
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="nickname" placeholder="Name" value="{{ user.nickname }}">
+                            <label for="floatingInput">Никнейм</label>
+                            <br>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" name="email"
+                                       placeholder="Description" value="{{ user.email }}">
+                                <label for="floatingDescription">Почта</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <div class="form-floating" style="margin-right: 10px;">
+                    <input type="password" class="form-control" name="password" placeholder="Password" value="{{ user.password }}">
+                    <label for="floatingPassword">Новый пароль</label>
+                </div>
+                    </td>
+                    <td>
+                <div class="form-floating">
+                    <input type="password" class="form-control" name="repeatedPassword" placeholder="repeatedPassword" value="{{ user.password }}">
+                    <label for="floatingRepeatedPassword">Повторите пароль</label>
+                </div>
+                    </td>
+                </tr>
+            </table>
+            <br>
+
+            <div class="form-floating">
+                <textarea style="height: 100px;" class="form-control" name="user_info" placeholder="user_info">{{ user.user_info }}</textarea>
+                <label for="floatingRecipe">О себе</label>
+            </div>
+            <br>
+            <div style="display: flex; align-items: center; justify-content: flex-end;">
+                <button class="btn btn-primary w-20 py-2" style="align-items: right;" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

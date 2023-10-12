@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Рецепт
+{% endblock %}
+
+
+{% block body %}
+<section>
+    <div class="container" style="border-radius: 5px; background-color: white; padding: 10px;
+                box-shadow: -2px -2px 5px grey, 2px 2px 5px grey; margin-bottom: 30px;">
+
+        <h2 style="padding-top: 10px;">&#8194;{{ recipe.name_recipe }}</h2>
+        {% if recipe.recipe_photo == None %}
+        <img style="border-radius: 30px"
+             src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+             alt="image 1"
+             class="sop">
+        {% else %}
+        <img style="border-radius: 30px"
+             src="/static/images/recipes/{{ recipe.recipe_photo }}"
+             alt="{{ recipe.recipe_photo }}"
+             class="sop">
+
+        {% endif %}
+        <p style="font-size: 22px; border-bottom: 2px dashed grey;"> &#8194;{{ recipe.description }}</p>
+        {% for r in recipe.recipe.split("<br />") %}
+        <p style="font-size: 20px"> &#8194;{{ r }}</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
